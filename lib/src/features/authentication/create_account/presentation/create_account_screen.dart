@@ -1,4 +1,3 @@
-
 import 'package:codehallam/src/common_widget/authentication_form.dart';
 import 'package:codehallam/src/features/authentication/create_account/presentation/notifier/create_account_notifier.dart';
 import 'package:codehallam/src/routing/route_name.dart';
@@ -48,60 +47,61 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-            horizontal: Sizes.p16.w, vertical: 100.h),
+            padding:
+                EdgeInsets.symmetric(horizontal: Sizes.p16.w, vertical: 100.h),
             child: AuthenticationForm(
+              
               formkey: _formkey,
               onTap: () {
-                if (_formkey.currentState!.validate() && createAccountProvider.isChecked) {
+                if (_formkey.currentState!.validate() &&
+                    createAccountProvider.isChecked) {
                   // Perform create account action
                 }
               },
               headline: 'Sign Up',
               obscure: createAccountProvider.isToggled ? true : false,
-              suffixIcon:  GestureDetector(
-                  onTap: () {
-                    ref
-                        .read(createAccountNotifier.notifier)
-                        .togglePasswordVisibility();
-                  },
-                  child: Icon(
-                    createAccountProvider.isToggled
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    color: AppColors.grey,
-                  ),
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  ref
+                      .read(createAccountNotifier.notifier)
+                      .togglePasswordVisibility();
+                },
+                child: Icon(
+                  createAccountProvider.isToggled
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                  color: AppColors.grey,
                 ),
+              ),
               acc1: 'Already have an account?',
               acc2: ' Login',
               btnText: 'Create Account',
               btnOnTap: () {
                 Navigator.pushNamed(context, RouteName.login);
               },
-              child: Padding(
-                padding: EdgeInsets.only(left: Sizes.p8.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                       height: 4,
-                      width: 4,
-                      child: Checkbox(
-                        value: createAccountProvider.isChecked,
-                        activeColor: AppColors.primary,
-                        onChanged: (value) {
-                         ref.read(createAccountNotifier.notifier).toggleCheckbox(value!);
-                        },
-                      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value: createAccountProvider.isChecked,
+                    activeColor: AppColors.primary,
+                    onChanged: (value) {
+                      ref
+                          .read(createAccountNotifier.notifier)
+                          .toggleCheckbox(value!);
+                    },
+                    visualDensity: VisualDensity(
+                      horizontal: -4.w, vertical: -3.h
                     ),
-                   gapW12,
-                    Text('I agree to the Terms and Conditions',
-                        style: GoogleFonts.lato(
-                            fontSize: Sizes.p12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.grey)),
-                  ],
-                ),
+                  ),
+                  gapW4,
+                  Text('I agree to the Terms and Conditions',
+                      style: GoogleFonts.lato(
+                          fontSize: Sizes.p12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.grey)),
+                ],
               ),
             ),
           ),

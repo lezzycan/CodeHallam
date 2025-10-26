@@ -9,27 +9,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthenticationForm extends StatelessWidget {
-  const AuthenticationForm({
-    super.key,
-    required GlobalKey<FormState> formkey,
+  const AuthenticationForm(
+      {super.key,
+      required GlobalKey<FormState> formkey,
+      required this.onTap,
+      required this.headline,
     
-    required this.onTap,
-    required this.headline,
-    
-    
-    required this.child,
-    required this.obscure, required this.suffixIcon, required this.acc1, required this.acc2, required this.btnText, required this.btnOnTap
-  }) : _formkey = formkey;
+      required this.child,
+      required this.obscure,
+      required this.suffixIcon,
+      required this.acc1,
+      required this.acc2,
+      required this.btnText,
+      required this.btnOnTap})
+      : _formkey = formkey;
 
   final GlobalKey<FormState> _formkey;
-  
- 
-  final VoidCallback onTap,btnOnTap;
+
+  final VoidCallback onTap, btnOnTap;
   final String headline, acc1, acc2, btnText;
- 
+
   final Widget child;
   final bool obscure;
   final Widget suffixIcon;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,7 @@ class AuthenticationForm extends StatelessWidget {
             obscure: obscure,
             suffixIcon: suffixIcon,
           ),
-          gapH16,
+          gapH16  ,
           child,
           gapH24,
           PrimaryButton(
@@ -70,7 +73,7 @@ class AuthenticationForm extends StatelessWidget {
           ),
           gapH24,
           SeparateText(
-            onTap: btnOnTap,
+              onTap: btnOnTap,
               textA: acc1,
               textB: acc2,
               styleA: GoogleFonts.fjallaOne(
