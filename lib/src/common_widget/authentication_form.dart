@@ -14,14 +14,13 @@ class AuthenticationForm extends StatelessWidget {
       required GlobalKey<FormState> formkey,
       required this.onTap,
       required this.headline,
-    
       required this.child,
       required this.obscure,
       required this.suffixIcon,
       required this.acc1,
       required this.acc2,
       required this.btnText,
-      required this.btnOnTap})
+      required this.btnOnTap, required this.emailController, required this.passwordController, required this.isLogin, this.firstName, this.lastName})
       : _formkey = formkey;
 
   final GlobalKey<FormState> _formkey;
@@ -30,10 +29,12 @@ class AuthenticationForm extends StatelessWidget {
   final String headline, acc1, acc2, btnText;
 
   final Widget child;
-  final bool obscure;
+  final bool obscure, isLogin;
   final Widget suffixIcon;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final TextEditingController? firstName, lastName;
   
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -48,8 +49,29 @@ class AuthenticationForm extends StatelessWidget {
                 color: AppColors.onBackground),
           ),
           gapH16,
+      if(!isLogin)    Column(
+        children: [
+          AppTextfield(
+                labelText: 'FirstName',
+                contrl: firstName ,
+                validator: context.validateFieldNotEmpty,
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+              ),
+              gapH20,
+          AppTextfield(
+            labelText: 'LastName',
+            contrl: lastName ,
+            validator: context.validateFieldNotEmpty,
+            keyboardType: TextInputType.name,
+            textInputAction: TextInputAction.next,
+          ),
+        ],
+      ),
+           gapH20,
           AppTextfield(
             labelText: 'Email',
+            contrl: emailController ,
             validator: context.validateEmailAddress,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
@@ -57,6 +79,7 @@ class AuthenticationForm extends StatelessWidget {
           gapH20,
           AppTextfield(
             labelText: 'Password',
+            contrl: passwordController,
             validator: context.validatePassword,
             keyboardType: TextInputType.visiblePassword,
             textInputAction: TextInputAction.done,
@@ -83,7 +106,7 @@ class AuthenticationForm extends StatelessWidget {
               styleB: GoogleFonts.lato(
                   fontSize: Sizes.p14.sp, color: AppColors.blueColor)),
           gapH16,
-          /*  Padding(
+         if (isLogin)  Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,7 +135,7 @@ class AuthenticationForm extends StatelessWidget {
                 ),
               ),
             ],),
-          ) */
+          )
         ],
       ),
     );

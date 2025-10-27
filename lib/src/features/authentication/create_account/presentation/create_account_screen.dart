@@ -1,5 +1,8 @@
+import 'package:codehallam/src/common_widget/app_sheet.dart';
 import 'package:codehallam/src/common_widget/authentication_form.dart';
+import 'package:codehallam/src/common_widget/otp_screen.dart';
 import 'package:codehallam/src/features/authentication/create_account/presentation/notifier/create_account_notifier.dart';
+import 'package:codehallam/src/features/authentication/create_account/presentation/notifier/otp_resend_notifier.dart';
 import 'package:codehallam/src/routing/route_name.dart';
 
 import 'package:codehallam/src/utils/constants/app_colors.dart';
@@ -30,13 +33,14 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
     super.dispose();
   }
 
-  final formKey = GlobalKey<FormState>();
+  
 
   @override
   Widget build(
     BuildContext context,
   ) {
     final createAccountProvider = ref.watch(createAccountNotifier);
+    final otpProvider = ref.watch(otpNotifier);
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -50,13 +54,25 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
             padding:
                 EdgeInsets.symmetric(horizontal: Sizes.p16.w, vertical: 100.h),
             child: AuthenticationForm(
-              
+              isLogin: false,
+              emailController: emailController,
+              passwordController: passwordController,
               formkey: _formkey,
               onTap: () {
-                if (_formkey.currentState!.validate() &&
+               /*  if (_formkey.currentState!.validate() &&
                     createAccountProvider.isChecked) {
                   // Perform create account action
-                }
+                } */
+              
+               openBottomSheet(context, OtpScreen(email: emailController.text,
+               resendText:otpProvider.isButtonDisabled ? Colors.grey : Colors.redAccent, 
+               timer: otpProvider.showTimer  ? "Resend code in ${otpProvider.secondsRemaining}s"
+              : "Didn't receive code?", onResend: () {
+                ref.read(otpNotifier.notifier).resendOtp(() {
+                  // Actual resend logic here
+                  print("Resend OTP logic executed");
+                });
+              },));
               },
               headline: 'Sign Up',
               obscure: createAccountProvider.isToggled ? true : false,

@@ -15,7 +15,18 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final _formkey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(
     BuildContext context,
@@ -35,6 +46,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               padding: EdgeInsets.symmetric(
             horizontal: Sizes.p16.w, vertical: 100.h),
               child: AuthenticationForm(
+                isLogin: true,
+                emailController: emailController,
+                passwordController: passwordController,
                 formkey: _formkey,
                 suffixIcon: GestureDetector(
                   onTap: () {
