@@ -1,6 +1,8 @@
+import 'package:codehallam/src/common_widget/app_asset.dart';
 import 'package:codehallam/src/common_widget/app_textfield.dart';
 import 'package:codehallam/src/common_widget/primary_button.dart';
 import 'package:codehallam/src/common_widget/separate_text.dart';
+import 'package:codehallam/src/common_widget/social_login_button.dart';
 import 'package:codehallam/src/utils/constants/app_colors.dart';
 import 'package:codehallam/src/utils/constants/app_sizes.dart';
 import 'package:codehallam/src/utils/validators/validator.dart';
@@ -135,9 +137,23 @@ class AuthenticationForm extends StatelessWidget {
                 ),
               ),
             ],),
-          )
+          ),
+          gapH24,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               SocialLoginButton(
+                asset: AppAsset.google,
+                onTap: () {},
+               ), 
+               gapW32,
+               SocialLoginButton(
+                asset: AppAsset.facebook,
+                onTap: () {},
+               ),
+
         ],
       ),
-    );
+        ],),);
   }
 }

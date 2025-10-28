@@ -1,10 +1,4 @@
-import 'package:codehallam/src/features/authentication/create_account/presentation/create_account_screen.dart';
-import 'package:codehallam/src/features/authentication/login/presentation/forgot_password.dart';
-import 'package:codehallam/src/features/authentication/login/presentation/login_screen.dart';
-
-
-import 'package:codehallam/src/routing/not_found_screen.dart';
-import 'package:codehallam/src/routing/route_name.dart';
+import 'routes.dart';
 import 'package:flutter/material.dart';
 
 class RouteManager {
@@ -17,10 +11,18 @@ class RouteManager {
 
       case RouteName.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-
-      case RouteName.forgotPassword: 
-        return MaterialPageRoute(
-            builder: (_) => const ForgotPassword());  
+      case RouteName.forgotPassword:
+        return MaterialPageRoute(builder: (_) => const ForgotPassword());
+      case RouteName.dashboard:
+        return MaterialPageRoute(builder: (_) => const DashBoard());
+      case RouteName.home:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case RouteName.explore:
+        return MaterialPageRoute(builder: (_) => const ExploreScreen());
+      case RouteName.learning:
+        return MaterialPageRoute(builder: (_) => const MyLearningScreen());
+      case RouteName.profile:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
 
       default:
         return MaterialPageRoute(

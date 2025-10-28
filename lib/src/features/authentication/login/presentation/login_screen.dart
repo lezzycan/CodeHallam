@@ -66,10 +66,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 obscure: loginProvider.isToggled ? true : false,
                 
                 onTap: () {
-                  if (_formkey.currentState!.validate()) {
+                  Navigator.pushReplacementNamed(context, RouteName.dashboard);
+                  /* if (_formkey.currentState!.validate()) {
                     //Todo : Implement login functionality
                     
-                  }
+                  } */
                 },
                 headline: 'Login',
                 btnText: 'Login',
