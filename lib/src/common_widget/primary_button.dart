@@ -16,19 +16,22 @@ class PrimaryButton extends StatelessWidget {
       super.key,
       this.isLoading = false,
       this.onPressed,
+      this.width = double.infinity,
       this.backGroundColor});
   final String text;
   final bool isLoading;
   final Color? backGroundColor;
   final VoidCallback? onPressed;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: Sizes.p48,
-      width: double.infinity,
+      width: width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          
           backgroundColor: backGroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Sizes.p8.r),

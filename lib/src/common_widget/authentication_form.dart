@@ -1,4 +1,4 @@
-import 'package:codehallam/src/common_widget/app_asset.dart';
+import 'package:codehallam/src/utils/constants/app_asset.dart';
 import 'package:codehallam/src/common_widget/app_textfield.dart';
 import 'package:codehallam/src/common_widget/primary_button.dart';
 import 'package:codehallam/src/common_widget/separate_text.dart';

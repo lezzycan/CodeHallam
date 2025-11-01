@@ -34,6 +34,7 @@ var gapW64 = SizedBox(width: Sizes.p64.w);
 
 /// Constant gap heights
 var gapH4 = SizedBox(height: Sizes.p4.h);
+var gapH8 = SizedBox(height: Sizes.p8.h);
 var gapH12 = SizedBox(height: Sizes.p12.h);
 var gapH16 = SizedBox(height: Sizes.p16.h);
 var gapH20 = SizedBox(height: Sizes.p20.h);
